@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">TaskFlow</string>
+    <string name="app_tagline">Your Tasks, Your Flow</string>
+
+    <!-- Auth -->
+    <string name="welcome_back">Welcome Back</string>
+    <string name="sign_in_subtitle">Sign in to your account</string>
+    <string name="create_account">Create Account</string>
+    <string name="join_taskflow">Join TaskFlow today</string>
+
+    <!-- Form Fields -->
+    <string name="username">Username</string>
+    <string name="email">Email Address</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="enter_username">Enter your username</string>
+    <string name="choose_username">Choose username</string>
+    <string name="email_hint">your.email@example.com</string>
+    <string name="enter_password">Enter your password</string>
+    <string name="password_hint">Min 6 characters</string>
+    <string name="password_requirements">Must contain uppercase, lowercase, number</string>
+    <string name="reenter_password">Re-enter password</string>
+
+    <!-- Buttons -->
+    <string name="sign_in">SIGN IN</string>
+    <string name="sign_up">SIGN UP</string>
+    <string name="create_account_button">CREATE ACCOUNT</string>
+    <string name="ok">OK</string>
+    <string name="cancel">CANCEL</string>
+    <string name="add_task">Add Task</string>
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
+    <string name="sign_out">SIGN OUT</string>
+    <string name="exit">EXIT</string>
+
+    <!-- Links & Others -->
+    <string name="or">OR</string>
+    <string name="no_account">Don\'t have an account? </string>
+    <string name="have_account">Already have an account? </string>
+    <string name="agree_terms">I agree to </string>
+    <string name="terms_link">Terms &amp; Conditions</string>
+
+    <!-- Screens -->
+    <string name="my_tasks">My Tasks</string>
+    <string name="no_tasks">No tasks</string>
+    <string name="no_tasks_yet">No tasks yet</string>
+    <string name="tap_add_task">Tap + to add your first task</string>
+    <string name="user_info_title">USER INFO</string>
+    <string name="menu">Menu</string>
+    <string name="show_password">Show password</string>
+
+    <!-- Labels -->
+    <string name="username_label">Username:</string>
+    <string name="email_label">Email:</string>
+    <string name="name_label">Name:</string>
+    <string name="student_number_label">Student No.:</string>
+    <string name="personal_statement_label">Personal Statement:</string>
+    <string name="release_version_label">Release Version:</string>
+</resources>
