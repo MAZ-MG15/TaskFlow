@@ -1,14 +1,19 @@
 package com.example.taskflowm
 
+import android.Manifest
 import android.app.DatePickerDialog
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.widget.PopupMenu
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.taskflowm.data.model.Task
 import com.example.taskflowm.databinding.ActivityMainBinding
@@ -28,16 +33,39 @@ class MainActivity : AppCompatActivity() {
     private val taskViewModel: TaskViewModel by viewModels()
     private val dateFormatter = SimpleDateFormat("dd MMM yyyy", Locale.getDefault())
 
+    private val requestPermissionLauncher = registerForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ) { isGranted: Boolean ->
+        if (isGranted) {
+            Toast.makeText(this, "Notifications enabled", Toast.LENGTH_SHORT).show()
+        } else {
+            Toast.makeText(this, "Notifications disabled", Toast.LENGTH_SHORT).show()
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         
+        checkNotificationPermission()
         setupRecyclerView()
         setupBottomNav()
         setupMenu()
         observeTasks()
+    }
+
+    private fun checkNotificationPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (ContextCompat.checkSelfPermission(
+                    this,
+                    Manifest.permission.POST_NOTIFICATIONS
+                ) != PackageManager.PERMISSION_GRANTED
+            ) {
+                requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
+            }
+        }
     }
 
     private fun setupRecyclerView() {

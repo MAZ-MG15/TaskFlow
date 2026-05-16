@@ -15,7 +15,8 @@ class TaskReminderReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
         val taskTitle = intent.getStringExtra("TASK_TITLE") ?: "Task Reminder"
         val taskDesc = intent.getStringExtra("TASK_DESC") ?: "You have a task due now!"
+        val taskId = intent.getIntExtra("TASK_ID", 0)
         
-        notificationHelper.showNotification(taskTitle, taskDesc)
+        notificationHelper.showNotification(taskTitle, taskDesc, taskId)
     }
 }

@@ -8,14 +8,19 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.example.taskflowm.databinding.ActivitySignUpBinding
+import com.example.taskflowm.util.NotificationHelper
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class SignUpActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySignUpBinding
     private val authViewModel: AuthViewModel by viewModels()
+
+    @Inject
+    lateinit var notificationHelper: NotificationHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,6 +53,10 @@ class SignUpActivity : AppCompatActivity() {
                 authViewModel.authState.collect { state ->
                     when (state) {
                         is AuthViewModel.AuthState.Success -> {
+                            notificationHelper.showNotification(
+                                "Welcome to TaskFlow!",
+                                "Account created successfully. Please sign in to continue."
+                            )
                             Toast.makeText(this@SignUpActivity, "Account created! Please sign in.", Toast.LENGTH_SHORT).show()
                             finish()
                         }

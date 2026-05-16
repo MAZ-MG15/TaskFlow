@@ -1,5 +1,6 @@
 package com.example.taskflowm.util
 
+import android.app.AlarmManager
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
@@ -10,12 +11,13 @@ import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import com.example.taskflowm.MainActivity
 import com.example.taskflowm.R
+import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
 class NotificationHelper @Inject constructor(
-    private val context: Context
+    @ApplicationContext private val context: Context
 ) {
     companion object {
         const val CHANNEL_ID = "taskflow_notifications"
@@ -42,7 +44,7 @@ class NotificationHelper @Inject constructor(
         }
     }
 
-    fun showNotification(title: String, message: String) {
+    fun showNotification(title: String, message: String, notificationId: Int = System.currentTimeMillis().toInt()) {
         val intent = Intent(context, MainActivity::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         }
@@ -60,13 +62,59 @@ class NotificationHelper @Inject constructor(
             .setAutoCancel(true)
 
         with(NotificationManagerCompat.from(context)) {
-            // Check permission is handled by caller or assumed granted for now
-            // In MainActivity we will request it
             try {
-                notify(System.currentTimeMillis().toInt(), builder.build())
+                notify(notificationId, builder.build())
             } catch (e: SecurityException) {
                 // Handle missing permission
             }
+        }
+    }
+
+    fun scheduleTaskReminder(taskId: Int, title: String, description: String, timeInMillis: Long) {
+        val intent = Intent(context, TaskReminderReceiver::class.java).apply {
+            putExtra("TASK_TITLE", title)
+            putExtra("TASK_DESC", description)
+            putExtra("TASK_ID", taskId)
+        }
+        val pendingIntent = PendingIntent.getBroadcast(
+            context, taskId, intent,
+            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+        )
+
+        val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            if (alarmManager.canScheduleExactAlarms()) {
+                alarmManager.setExactAndAllowWhileIdle(
+                    AlarmManager.RTC_WAKEUP,
+                    timeInMillis,
+                    pendingIntent
+                )
+            } else {
+                alarmManager.set(
+                    AlarmManager.RTC_WAKEUP,
+                    timeInMillis,
+                    pendingIntent
+                )
+            }
+        } else {
+            alarmManager.setExactAndAllowWhileIdle(
+                AlarmManager.RTC_WAKEUP,
+                timeInMillis,
+                pendingIntent
+            )
+        }
+    }
+
+    fun cancelTaskReminder(taskId: Int) {
+        val intent = Intent(context, TaskReminderReceiver::class.java)
+        val pendingIntent = PendingIntent.getBroadcast(
+            context, taskId, intent,
+            PendingIntent.FLAG_NO_CREATE or PendingIntent.FLAG_IMMUTABLE
+        )
+        if (pendingIntent != null) {
+            val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+            alarmManager.cancel(pendingIntent)
         }
     }
 }
