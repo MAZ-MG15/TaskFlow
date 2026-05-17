@@ -183,6 +183,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupMenu() {
+        binding.dashboardProfileImage.setOnClickListener {
+            startActivity(Intent(this, UserInfoActivity::class.java))
+            overridePendingTransition(0, 0)
+        }
+
         binding.settingsIcon.setOnClickListener { view ->
             val popup = PopupMenu(this, view)
             popup.menu.add(0, 1, 0, "Developer Info")
