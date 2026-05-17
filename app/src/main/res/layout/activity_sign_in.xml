@@ -105,6 +105,18 @@
                 android:textStyle="bold"
                 android:backgroundTint="#2D5BA8" />
 
+            <TextView
+                android:id="@+id/forgotPasswordLink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="16dp"
+                android:padding="8dp"
+                android:text="@string/forgot_password"
+                android:textColor="#D4A574"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="24dp"
