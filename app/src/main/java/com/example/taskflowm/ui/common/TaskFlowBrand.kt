@@ -32,7 +32,7 @@ fun TaskFlowBrand(
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Image(
-            painter = painterResource(id = R.drawable.ic_taskflow_brand_logo),
+            painter = painterResource(id = R.mipmap.taskflow),
             contentDescription = "TaskFlow Logo",
             modifier = Modifier.size(120.dp),
         )

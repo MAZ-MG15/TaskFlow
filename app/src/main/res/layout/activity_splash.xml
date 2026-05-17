@@ -9,7 +9,7 @@
     <ImageView
         android:layout_width="160dp"
         android:layout_height="160dp"
-        android:src="@drawable/ic_taskflow_brand_logo"
+        android:src="@mipmap/taskflow"
         android:contentDescription="Logo" />
 
     <TextView
