@@ -125,6 +125,9 @@ dependencies {
     // Timber for logging
     implementation("com.jakewharton.timber:timber:5.0.1")
 
+    // Material Calendar View
+    implementation("com.github.prolificinteractive:material-calendarview:2.0.1")
+
     // Testing
     testImplementation("junit:junit:4.13.2")
     testImplementation("org.mockito.kotlin:mockito-kotlin:5.1.0")

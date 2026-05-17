@@ -9,9 +9,14 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.taskflowm.data.model.Task
 import com.example.taskflowm.databinding.ActivityCalendarBinding
 import com.example.taskflowm.databinding.DialogAddTaskBinding
 import com.example.taskflowm.ui.home.TaskViewModel
+import com.prolificinteractive.materialcalendarview.CalendarDay
+import com.prolificinteractive.materialcalendarview.DayViewDecorator
+import com.prolificinteractive.materialcalendarview.DayViewFacade
+import com.prolificinteractive.materialcalendarview.spans.DotSpan
 import dagger.hilt.android.AndroidEntryPoint
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -61,8 +66,8 @@ class CalendarActivity : AppCompatActivity() {
     }
 
     private fun setupCalendar() {
-        binding.calendarView.setOnDateChangeListener { _, year, month, dayOfMonth ->
-            selectedDateCalendar.set(year, month, dayOfMonth)
+        binding.calendarView.setOnDateChangedListener { _, date, _ ->
+            selectedDateCalendar.set(date.year, date.month - 1, date.day)
             updateDateHeaders()
             filterTasksForSelectedDate()
         }
@@ -74,8 +79,29 @@ class CalendarActivity : AppCompatActivity() {
     }
 
     private fun observeTasks() {
-        taskViewModel.tasks.observe(this) { 
+        taskViewModel.tasks.observe(this) { tasks ->
             filterTasksForSelectedDate()
+            updateCalendarDecorators(tasks)
+        }
+    }
+
+    private fun updateCalendarDecorators(tasks: List<Task>) {
+        val daysWithTasks = tasks.mapNotNull { task ->
+            task.dueDate?.let {
+                val cal = Calendar.getInstance()
+                cal.timeInMillis = it
+                CalendarDay.from(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH) + 1, cal.get(Calendar.DAY_OF_MONTH))
+            }
+        }.toSet()
+
+        binding.calendarView.removeDecorators()
+        binding.calendarView.addDecorator(EventDecorator(android.graphics.Color.parseColor("#D4A574"), daysWithTasks))
+    }
+
+    private class EventDecorator(private val color: Int, private val dates: Collection<CalendarDay>) : DayViewDecorator {
+        override fun shouldDecorate(day: CalendarDay): Boolean = dates.contains(day)
+        override fun decorate(view: DayViewFacade) {
+            view.addSpan(DotSpan(8f, color))
         }
     }
 

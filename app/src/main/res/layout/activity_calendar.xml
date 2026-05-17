@@ -44,13 +44,15 @@
                 android:textColor="#FFFFFF"
                 android:layout_marginBottom="16dp" />
 
-            <CalendarView
+            <com.prolificinteractive.materialcalendarview.MaterialCalendarView
                 android:id="@+id/calendarView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#2D2D2D"
-                android:dateTextAppearance="@style/CalendarDateText"
-                android:weekDayTextAppearance="@style/CalendarWeekDayText"
+                app:mcv_selectionColor="#D4A574"
+                app:mcv_headerTextAppearance="@style/CalendarWeekDayText"
+                app:mcv_dateTextAppearance="@style/CalendarDateText"
+                app:mcv_weekDayTextAppearance="@style/CalendarWeekDayText"
                 android:layout_marginBottom="24dp" />
 
             <TextView
