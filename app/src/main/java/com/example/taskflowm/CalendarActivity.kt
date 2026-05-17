@@ -17,6 +17,7 @@ import com.prolificinteractive.materialcalendarview.CalendarDay
 import com.prolificinteractive.materialcalendarview.DayViewDecorator
 import com.prolificinteractive.materialcalendarview.DayViewFacade
 import com.prolificinteractive.materialcalendarview.spans.DotSpan
+import androidx.core.content.ContextCompat
 import dagger.hilt.android.AndroidEntryPoint
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -95,7 +96,21 @@ class CalendarActivity : AppCompatActivity() {
         }.toSet()
 
         binding.calendarView.removeDecorators()
+        binding.calendarView.addDecorator(TodayDecorator(this))
         binding.calendarView.addDecorator(EventDecorator(android.graphics.Color.parseColor("#D4A574"), daysWithTasks))
+    }
+
+    private class TodayDecorator(private val context: android.content.Context) : DayViewDecorator {
+        private val today = CalendarDay.today()
+        private val background = ContextCompat.getDrawable(context, R.drawable.today_circle_background)
+
+        override fun shouldDecorate(day: CalendarDay): Boolean = day == today
+
+        override fun decorate(view: DayViewFacade) {
+            background?.let {
+                view.setBackgroundDrawable(it)
+            }
+        }
     }
 
     private class EventDecorator(private val color: Int, private val dates: Collection<CalendarDay>) : DayViewDecorator {
