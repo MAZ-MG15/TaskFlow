@@ -4,18 +4,13 @@
     android:height="200dp"
     android:viewportWidth="200"
     android:viewportHeight="200">
-    <!-- Modern Hexagonal Background / Shield -->
+    <!-- Solid Blue Circular Background -->
     <path
         android:fillColor="#2D5BA8"
-        android:pathData="M100,20 L170,60 L170,140 L100,180 L30,140 L30,60 Z" />
+        android:pathData="M100,100m-80,0a80,80 0,1 1,160 0a80,80 0,1 1,-160 0" />
 
-    <!-- Stylized Checkmark representing "Task" -->
+    <!-- Bold White Checkmark representing TaskFlow -->
     <path
         android:fillColor="#FFFFFF"
-        android:pathData="M65,105 L90,130 L145,75 L135,65 L90,110 L75,95 Z" />
-
-    <!-- Fluid Wave representing "Flow" -->
-    <path
-        android:fillColor="#D4A574"
-        android:pathData="M40,130 Q100,100 160,130 L160,145 Q100,115 40,145 Z" />
+        android:pathData="M65,100 L90,125 L145,70 L160,85 L90,155 L50,115 Z" />
 </vector>
