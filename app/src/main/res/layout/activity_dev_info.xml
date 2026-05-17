@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
     android:background="#1A1A1A">
 
-    <Button
+    <ImageButton
         android:id="@+id/backButton"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:text="←"
-        android:backgroundTint="#2D5BA8" />
+        android:src="@drawable/ic_back_arrow"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="@string/cancel"
+        app:tint="#FFFFFF" />
 
     <ScrollView
         android:layout_width="match_parent"

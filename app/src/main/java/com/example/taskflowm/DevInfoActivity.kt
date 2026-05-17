@@ -14,6 +14,12 @@ class DevInfoActivity : AppCompatActivity() {
         binding = ActivityDevInfoBinding.inflate(layoutInflater)
         setContentView(binding.root)
         
-        // Setup logic for dev info
+        binding.backButton.setOnClickListener {
+            onBackPressedDispatcher.onBackPressed()
+        }
+
+        binding.exitButton.setOnClickListener {
+            onBackPressedDispatcher.onBackPressed()
+        }
     }
 }
