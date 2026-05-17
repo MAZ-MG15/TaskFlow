@@ -1,5 +1,6 @@
 package com.example.taskflowm
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -31,6 +32,16 @@ class TaskAdapter(
         holder.binding.taskCheckbox.setOnCheckedChangeListener(null)
         holder.binding.taskCheckbox.isChecked = task.isCompleted
         
+        // Color coding based on title
+        val color = when {
+            task.title.contains("Urgent", ignoreCase = true) -> "#E74C3C" // Red
+            task.title.contains("Important", ignoreCase = true) -> "#F1C40F" // Yellow
+            task.title.contains("Work", ignoreCase = true) -> "#3498DB" // Blue
+            task.title.contains("Home", ignoreCase = true) -> "#2ECC71" // Green
+            else -> "#D4A574" // Brand Accent (Default)
+        }
+        holder.binding.priorityIndicator.setBackgroundColor(Color.parseColor(color))
+
         if (task.dueDate != null) {
             holder.binding.taskDateTextView.visibility = View.VISIBLE
             holder.binding.taskDateTextView.text = dateFormatter.format(task.dueDate)
