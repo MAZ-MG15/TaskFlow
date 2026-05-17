@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="200dp"
+    android:height="200dp"
+    android:viewportWidth="200"
+    android:viewportHeight="200">
+    <!-- Simplified representation of the TaskFlow logo (Checkmark + Wave) -->
+    <!-- Blue Checkmark part -->
+    <path
+        android:pathData="M40,100 L70,130 L160,50"
+        android:strokeColor="#2D5BA8"
+        android:strokeWidth="15"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
+    <!-- Gold Wave part -->
+    <path
+        android:pathData="M80,120 Q120,80 170,120"
+        android:strokeColor="#D4A574"
+        android:strokeWidth="12"
+        android:strokeLineCap="round" />
+</vector>

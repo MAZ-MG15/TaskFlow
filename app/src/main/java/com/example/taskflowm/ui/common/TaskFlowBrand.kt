@@ -25,16 +25,16 @@ import com.example.taskflowm.ui.theme.TASKFLOWMTheme
 
 @Composable
 fun TaskFlowBrand(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Column(
         modifier = modifier,
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Image(
             painter = painterResource(id = R.drawable.ic_taskflow_brand_logo),
             contentDescription = "TaskFlow Logo",
-            modifier = Modifier.size(120.dp)
+            modifier = Modifier.size(120.dp),
         )
         
         Spacer(modifier = Modifier.height(16.dp))
@@ -50,7 +50,7 @@ fun TaskFlowBrand(
                     }
                 },
                 fontSize = 56.sp,
-                letterSpacing = (-1).sp
+                letterSpacing = (-1).sp,
             )
         }
     }
