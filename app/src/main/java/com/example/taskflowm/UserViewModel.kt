@@ -46,4 +46,12 @@ class UserViewModel @Inject constructor(
             _user.value = updatedUser
         }
     }
+
+    fun deleteAccount() {
+        viewModelScope.launch {
+            val currentUser = _user.value ?: return@launch
+            userRepository.deleteUser(currentUser)
+            preferencesManager.clearToken()
+        }
+    }
 }

@@ -83,7 +83,18 @@
                     android:text="Sign-out"
                     android:textColor="#D4A574"
                     android:backgroundTint="#2D2D2D"
-                    style="@style/Widget.MaterialComponents.Button.OutlinedButton" />
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_marginBottom="12dp" />
+
+                <TextView
+                    android:id="@+id/deleteAccountLink"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Delete Account"
+                    android:textColor="#E74C3C"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:padding="8dp" />
 
             </LinearLayout>
 

@@ -1,25 +1,38 @@
 package com.example.taskflowm.ui.home
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
+import androidx.lifecycle.switchMap
 import androidx.lifecycle.viewModelScope
 import com.example.taskflowm.data.model.Task
 import com.example.taskflowm.data.repository.TaskRepository
 import com.example.taskflowm.util.NotificationHelper
+import com.example.taskflowm.util.PreferencesManager
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class TaskViewModel @Inject constructor(
     private val repository: TaskRepository,
-    private val notificationHelper: NotificationHelper
+    private val notificationHelper: NotificationHelper,
+    private val preferencesManager: PreferencesManager
 ) : ViewModel() {
-    val tasks = repository.getAllTasks().asLiveData()
+    private val _userId = preferencesManager.userToken.asLiveData()
+    val tasks = _userId.switchMap { userId ->
+        if (userId != null) {
+            repository.getTasksForUser(userId).asLiveData()
+        } else {
+            MutableLiveData(emptyList())
+        }
+    }
 
     fun addTask(title: String, description: String, dueDate: Long? = null) {
         viewModelScope.launch {
-            val task = Task(title = title, description = description, dueDate = dueDate)
+            val userId = preferencesManager.userToken.first() ?: return@launch
+            val task = Task(userId = userId, title = title, description = description, dueDate = dueDate)
             val id = repository.insertTask(task)
             dueDate?.let {
                 if (it > System.currentTimeMillis()) {

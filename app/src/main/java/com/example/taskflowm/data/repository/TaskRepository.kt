@@ -9,7 +9,7 @@ import javax.inject.Singleton
 class TaskRepository @Inject constructor(
     private val taskDao: TaskDao
 ) {
-    fun getAllTasks() = taskDao.getAllTasks()
+    fun getTasksForUser(userId: String) = taskDao.getTasksForUser(userId)
     suspend fun insertTask(task: Task): Long = taskDao.insertTask(task)
     suspend fun updateTask(task: Task) = taskDao.updateTask(task)
     suspend fun deleteTask(task: Task) = taskDao.deleteTask(task)

@@ -38,6 +38,23 @@ class UserInfoActivity : AppCompatActivity() {
         binding.editInfoButton.setOnClickListener {
             showEditUserDialog()
         }
+
+        binding.deleteAccountLink.setOnClickListener {
+            showDeleteConfirmationDialog()
+        }
+    }
+
+    private fun showDeleteConfirmationDialog() {
+        AlertDialog.Builder(this)
+            .setTitle("Delete Account")
+            .setMessage("Are you sure you want to permanently delete your account? All your tasks will be lost.")
+            .setPositiveButton("DELETE") { _, _ ->
+                userViewModel.deleteAccount()
+                startActivity(Intent(this, SignInActivity::class.java))
+                finishAffinity()
+            }
+            .setNegativeButton("CANCEL", null)
+            .show()
     }
 
     private fun observeUser() {
