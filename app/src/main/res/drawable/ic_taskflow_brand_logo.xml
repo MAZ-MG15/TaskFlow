@@ -1,18 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
     android:width="200dp"
     android:height="200dp"
     android:viewportWidth="200"
     android:viewportHeight="200">
-    <!-- Blue Checkmark with rounded corners -->
+    <!-- Modern Hexagonal Background / Shield -->
     <path
         android:fillColor="#2D5BA8"
-        android:pathData="M35,100 C35,100 65,130 75,140 C85,130 165,50 165,50 C175,40 165,30 155,30 C155,30 85,100 75,110 C65,100 45,80 45,80 C35,70 25,80 35,100 Z" />
-    <!-- Gold Waves - more fluid and overlapping -->
+        android:pathData="M100,20 L170,60 L170,140 L100,180 L30,140 L30,60 Z" />
+
+    <!-- Stylized Checkmark representing "Task" -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M65,105 L90,130 L145,75 L135,65 L90,110 L75,95 Z" />
+
+    <!-- Fluid Wave representing "Flow" -->
     <path
         android:fillColor="#D4A574"
-        android:pathData="M85,115 C115,75 165,75 190,110 C165,140 115,140 85,115" />
-    <path
-        android:fillColor="#D4A574"
-        android:fillAlpha="0.8"
-        android:pathData="M95,125 C125,95 165,95 185,120 C165,145 125,145 95,125" />
+        android:pathData="M40,130 Q100,100 160,130 L160,145 Q100,115 40,145 Z" />
 </vector>
