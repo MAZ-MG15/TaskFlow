@@ -65,7 +65,7 @@
             <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:src="@android:drawable/checkbox_on_background"
+                android:src="@drawable/ic_nav_tasks"
                 app:tint="#D4A574" />
             <TextView
                 android:layout_width="wrap_content"
@@ -85,7 +85,7 @@
             <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:src="@android:drawable/ic_menu_today"
+                android:src="@drawable/ic_nav_schedule"
                 app:tint="#80FFFFFF" />
             <TextView
                 android:layout_width="wrap_content"
@@ -104,7 +104,7 @@
                 android:layout_width="56dp"
                 android:layout_height="56dp"
                 android:layout_gravity="center"
-                app:icon="@android:drawable/ic_input_add"
+                app:icon="@drawable/ic_add_task"
                 app:iconGravity="textStart"
                 app:iconPadding="0dp"
                 app:iconTint="#1A1A1A"
@@ -123,7 +123,7 @@
             <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:src="@android:drawable/ic_menu_recent_history"
+                android:src="@drawable/ic_nav_focus"
                 app:tint="#80FFFFFF" />
             <TextView
                 android:layout_width="wrap_content"
@@ -143,8 +143,7 @@
             <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:src="@android:drawable/ic_menu_myplaces"
-                app:tint="#80FFFFFF" />
+                android:src="@drawable/ic_taskflow_brand_logo" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
