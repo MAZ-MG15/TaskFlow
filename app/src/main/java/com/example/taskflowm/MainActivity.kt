@@ -141,6 +141,11 @@ class MainActivity : AppCompatActivity() {
             overridePendingTransition(0, 0)
         }
 
+        binding.navFocus.setOnClickListener {
+            startActivity(Intent(this, FocusActivity::class.java))
+            overridePendingTransition(0, 0)
+        }
+
         binding.navProfile.setOnClickListener {
             startActivity(Intent(this, UserInfoActivity::class.java))
             overridePendingTransition(0, 0)

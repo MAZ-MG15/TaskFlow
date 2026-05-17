@@ -90,5 +90,11 @@ class UserInfoActivity : AppCompatActivity() {
             overridePendingTransition(0, 0)
             finish()
         }
+
+        binding.navFocus.setOnClickListener {
+            startActivity(Intent(this, FocusActivity::class.java))
+            overridePendingTransition(0, 0)
+            finish()
+        }
     }
 }
